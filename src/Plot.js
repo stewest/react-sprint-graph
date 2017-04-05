@@ -12,42 +12,34 @@ import React, { Component } from 'react';
 import Plotly from 'plotly.js/dist/plotly.js';
 
 class Plot extends Component {
-	componentDidMount() {
-		this.drawPlot();
-	}
+  componentDidMount() {
+    this.drawPlot();
+  }
 
-	componentDidUpdate() {
-		this.drawPlot();
-	}
+  componentDidUpdate() {
+    this.drawPlot();
+  }
 
-	shouldComponentUpdate(nextProps) {
-		return this.props.xData !== nextProps.xData || this.props.yData !== nextProps.yData;
-	}
+  shouldComponentUpdate(nextProps) {
+    return this.props.Data !== nextProps.Data;
+  }
 
-	drawPlot = () => {
-		Plotly.newPlot(this.div, [{
-			x: this.props.xData,
-			y: this.props.yData,
-			type: this.props.type,
-		}], {
-			margin: {
-				t: 0, r: 0, l: 30
-			},
-			xaxis: {
-				gridcolor: 'transparent'
-			}
-		}, {
-			displayModeBar: false
-		});
-	}
+  drawPlot = () => {
+    const dataArray = this.props.Data;
+    const concatData = dataArray.map(v => v);
+    const layout = {
+      title: '2 Week Sprint'
+    };
+    Plotly.newPlot(this.div,concatData, layout);
+  }
 
-	render() {
-		return (
-			<div className="plot-wrapper">
-				<div ref={comp => this.div = comp} />
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div className="plot-wrapper">
+        <div ref={comp => this.div = comp} />
+      </div>
+    )
+  }
 }
 
 export default Plot;
