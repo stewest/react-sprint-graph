@@ -1,21 +1,4 @@
-# Lab #4: Styling
-
-Your task in this lab is to style our weather application in three different ways:
-
-- Inline styles
-- CSS Modules
-- `styled-components`
-
-We've pre-filled out the solution of the last lab (so you don't have to do that again) and styled it with a global CSS file. (`public/global.css`) You have to move those styles to the new way and make sure it looks as close to the original as possible.
-
-This lab is based on three branches (`4-styling-inline-styles`, `4-styling-css-modules`, `4-styling-styled-components`) that have the same starting point. Take the styles in `public/global.css`, comment all of them out and get cracking!
-
-This is what the finished app looks like (and should look like after converting it to a different library):
-
-![The finished app with styling](https://cloud.githubusercontent.com/assets/7525670/23343771/9145b31e-fc68-11e6-93e3-4002416b9608.png)
-![The finished app as seen on a phone](https://cloud.githubusercontent.com/assets/7525670/23343772/914aad38-fc68-11e6-91c4-dd55dd0e875f.png)
-
-There are no unit tests verifying the correct solution—if your app looks the same with the moved styles that's it! (note that a 1:1 move might, in some cases, not be possible)
+A basic Agile 2 Sprint graph
 
 ## License
 
