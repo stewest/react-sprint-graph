@@ -2,7 +2,7 @@ A basic Agile 2 Sprint graph
 
 ## License
 
-Copyright (C) 2017  Maximilian Stoiber & Nikolaus Graf. You may use this repo for non-commercial use under the GPLv3 license.
+Copyright (C) 2017  Stew West. You may use this repo for non-commercial use under the GPLv3 license.
 
 ```
 This program is free software: you can redistribute it and/or modify
