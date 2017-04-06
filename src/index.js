@@ -5,9 +5,9 @@ import Plot from './Plot';
 
 const storyPoints = {
   // Days of sprint
-  x: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14"],
+  x: ["1","2","3","4","5","6","7","8","9","10","11"],
   // Story Points
-  y: [19.82, 18.95, 18.64, 17.99, 17.14, 17.29, 17.26, 17.54, 17.46, 18.95, 18.64, 17.99, 17.14, 17.29,],
+  y: [0, 19.82, 18.95, 18.64, 23.99, 38.14, 57.29, 64.26, 83.54, 107.46, 128.95],
   name: 'Story Points'
 }
 
@@ -21,7 +21,7 @@ const data = [baseCurve, storyPoints];
 
 ReactDOM.render(
   <div className="wrapper">
-    <h1 className="title">DBB - 2 Week Sprint Data</h1>
+    <h1 className="title">React - DBB</h1>
     <Plot Data={data} Type="scatter"/>
   </div>,
   document.getElementById('root')
