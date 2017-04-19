@@ -5,15 +5,19 @@
   "devDependencies": {
     "enzyme": "^2.7.1",
     "enzyme-to-json": "^1.4.5",
+    "http_auth_proxy": "^1.0.3",
     "react-addons-test-utils": "^15.4.2",
     "react-scripts": "0.9.0"
   },
   "dependencies": {
+    "jira-agile-api-client": "^1.0.5",
     "plotly.js": "^1.23.1",
+    "query-string": "^4.3.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "scripts": {
+    "dev-server": "./node_modules/http_auth_proxy/bin/http-auth-proxy-server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
