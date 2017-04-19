@@ -1,36 +1,75 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Plot from './Plot';
+import api from 'jira-agile-api-client';
+import queryString from 'query-string';
 
-const baseCurve = {
-  x: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14"],
-  y: [0,5.225,11.555,18.94,27.46,37.585,50.95,65.95,82.72,100.78,121.33],
-  name: 'Base'
+// Set JIRA Url.
+api.setEndpoint('http://localhost:3001');
+
+const args = queryString.parse(location.search);
+
+let intro = '';
+
+if (!args.boardId || !args.sprintId) {
+  intro = 'Please provide boardId and sprintId parameters.';
+} else {
+  intro = 'Loading...';
 }
-
-const storyPoints = {
-  // Days of sprint
-  x: ["1","2","3","4","5","6","7","8","9","10","11"],
-  // Story Points
-  y: [0, 19.82, 18.95, 18.64, 23.99, 38.14, 57.29, 64.26, 83.54, 107.46, 128.95],
-  name: 'Story Points'
-}
-
-const demoDeployDone = {	
-  
-  // Days of sprint
-  x: ["1","2","3","4","5","6","7","8","9","10","11"],
-  // Story Points
-  y: [0, 2,9,12.5,20,32,45,60.5,78,79,97,109],
-  name: 'Demo / Deploy / Done'
-}
-
-const data = [baseCurve, storyPoints, demoDeployDone];
 
 ReactDOM.render(
   <div className="wrapper">
-    <h1 className="title">React - DBB</h1>
-    <Plot Data={data} Type="scatter"/>
+    {intro}
   </div>,
   document.getElementById('root')
 );
+
+api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
+  let days = [],
+      totalPoints = [],
+      demoDeployDonePoints = [],
+      donePoints = [];
+
+  stats.forEach(({ date, stats }) => {
+    days.push(date);
+
+    let sum = stats['Done'];
+    donePoints.push(sum);
+
+    sum += stats['Demo'] + stats['Closed'];
+    demoDeployDonePoints.push(sum);
+
+    sum += stats['Testing'] + stats['In Progress'] + stats['To Do'];
+    totalPoints.push(sum);
+  });
+
+  const lines = [
+    {
+      x: days,
+      y: totalPoints,
+      name: 'Total',
+    },
+    {
+      x: days,
+      y: demoDeployDonePoints,
+      name: 'Demo / Deploy / Done',
+    },
+    {
+      x: days,
+      y: donePoints,
+      name: 'Done',
+    },
+  ];
+
+  console.log(lines);
+
+  ReactDOM.render(
+    <div className="wrapper">
+      <h1 className="title">React - DBB</h1>
+      <Plot Data={lines} Type="scatter"/>
+    </div>,
+    document.getElementById('root')
+  );
+}).catch(function (error) {
+  console.log(error);
+});

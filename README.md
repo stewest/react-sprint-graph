@@ -1,4 +1,12 @@
-A basic Agile 2 Sprint graph
+A basic Agile 2 Sprint graph.
+
+## Usage
+
+Required GET params: boardId, sprintId (eg. http://localhost:3000/?boardId=240&sprintId=563).
+
+## Local
+
+For local development run `npm dev-server` in a separate terminal and provide JIRA url, your username and password.
 
 ## License
 
