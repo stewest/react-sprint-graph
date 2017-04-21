@@ -6,11 +6,11 @@ Required GET params: boardId, sprintId (eg. http://localhost:3000/?boardId=240&s
 
 ## Local
 
-For local development run `npm dev-server` in a separate terminal and provide JIRA url, your username and password.
+For local development run `npm run dev-server` or `yarn dev-server` in a separate terminal and provide JIRA url, your username and password.
 
 ## License
 
-Copyright (C) 2017  Stew West. You may use this repo for non-commercial use under the GPLv3 license.
+Copyright (C) 2017  Maximilian Stoiber & Nikolaus Graf. You may use this repo for non-commercial use under the GPLv3 license.
 
 ```
 This program is free software: you can redistribute it and/or modify
