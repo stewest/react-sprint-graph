@@ -25,22 +25,31 @@ ReactDOM.render(
 );
 
 api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
+  console.log(stats);
+
   let days = [],
       totalPoints = [],
       demoDeployDonePoints = [],
       donePoints = [];
 
   stats.forEach(({ date, stats }) => {
+    // Make sure all status are initialized.
+    stats = {
+      'Done': 0,
+      'Demo': 0,
+      'Closed': 0,
+      'Testing': 0,
+      'In Progress': 0,
+      'To Do': 0,
+      ... stats
+    };
+
     days.push(date);
 
-    let sum = stats['Done'];
-    donePoints.push(sum);
+    donePoints.push(stats['Done'] + stats['Closed']);
+    demoDeployDonePoints.push(stats['Done'] + stats['Closed'] + stats['Demo']);
 
-    sum += stats['Demo'] + stats['Closed'];
-    demoDeployDonePoints.push(sum);
-
-    sum += stats['Testing'] + stats['In Progress'] + stats['To Do'];
-    totalPoints.push(sum);
+    totalPoints.push(stats['Done'] + stats['Demo'] + stats['Closed'] + stats['Testing'] + stats['In Progress'] + stats['To Do']);
   });
 
   const lines = [
