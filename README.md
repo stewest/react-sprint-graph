@@ -6,7 +6,7 @@ Required GET params: boardId, sprintId (eg. http://localhost:3000/?boardId=240&s
 
 ## Local
 
-For local development run `npm dev-server` in a separate terminal and provide JIRA url, your username and password.
+For local development run `npm run dev-server` in a separate terminal and provide JIRA url, your username and password.
 
 ## License
 
