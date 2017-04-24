@@ -52,6 +52,22 @@ api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
     totalPoints.push(stats['Done'] + stats['Demo'] + stats['Closed'] + stats['Testing'] + stats['In Progress'] + stats['To Do']);
   });
 
+  // y = x2 + 2
+let daysTotal = days.length;
+let finalPoints = totalPoints[0];
+let spacing = (finalPoints / daysTotal);
+
+console.log(daysTotal);
+console.log(finalPoints);
+console.log(spacing);
+
+let graphDays = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+
+const basePoints = graphDays.map((y) => {
+  return y * spacing;
+});
+
+
   const lines = [
     {
       x: days,
@@ -68,13 +84,18 @@ api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
       y: donePoints,
       name: 'Done',
     },
+    {
+      x: days,
+      y: basePoints,
+      name: 'Base Curve'
+    },
   ];
 
   console.log(lines);
 
   ReactDOM.render(
     <div className="wrapper">
-      <h1 className="title">React - DBB</h1>
+      <h1 className="title">React - Jira Burn Up</h1>
       <Plot Data={lines} Type="scatter"/>
     </div>,
     document.getElementById('root')
@@ -82,3 +103,6 @@ api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
 }).catch(function (error) {
   console.log(error);
 });
+
+
+// Make a baswe curve that can automatically take the totalPoints points, and then make day points along the curve which equals the days array.
