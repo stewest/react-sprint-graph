@@ -28,7 +28,7 @@ ReactDOM.render(
 let sprint;
 api.sprint.getSingle(args.sprintId).then(s => {
   sprint = s;
-  console.log(sprint);
+  // console.log(sprint);
   return api.util.getSprintHistory(args.boardId, args.sprintId);
 }).then(function (stats) {
 
@@ -66,9 +66,9 @@ api.sprint.getSingle(args.sprintId).then(s => {
   });
 
   // y = x2 + 2
-  let daysTotal = days.length;
-  let finalPoints = totalPoints[0];
-  let spacing = (finalPoints / daysTotal);
+  // const daysTotal = days.length;
+  // const finalPoints = totalPoints[0];
+  // const spacing = (finalPoints / daysTotal);
 
   // console.log('number of days ' + daysTotal);
   // console.log('last days points ' + finalPoints);
@@ -80,16 +80,13 @@ api.sprint.getSingle(args.sprintId).then(s => {
     return index;
   });
 
-  let dayPoints = totalPoints;
-
   // Draw base curve on graph
-  const basePoints = graphDays.map((dayPoints, graphDays) => {
+  const basePoints = graphDays.map((totalPoints, graphDays) => {
   // return Math.pow(y, 2) + spacing; // this is too tall
   // =B3+(C4*5%)
     let percentage = 5;
     // need to make this a more smooth curve.
-    return (dayPoints + (dayPoints * ((percentage++))));
-
+    return Math.pow((totalPoints) + (totalPoints * ((percentage++)/100)), 1.65);
   }).reverse();
 
   const lines = [
@@ -125,7 +122,7 @@ api.sprint.getSingle(args.sprintId).then(s => {
   ReactDOM.render(
     <div className="wrapper">
       <h1 className="title">Jira Burn Up for { sprint.name }</h1>
-      <Plot Data={lines} Type="scatter" Days={daysTotal}/>
+      <Plot Data={lines} Type="scatter" Days={days.length}/>
     </div>,
     document.getElementById('root')
   );

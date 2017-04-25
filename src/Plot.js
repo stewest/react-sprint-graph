@@ -27,7 +27,6 @@ class Plot extends Component {
   drawPlot = () => {
     const dataArray = this.props.Data;
     const days = this.props.Days - 1;
-    const dayTotal = days.length;
     const concatData = dataArray.map(v => v);
     const layout = {
       title: days + ' Day Sprint'

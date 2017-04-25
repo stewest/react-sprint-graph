@@ -6,7 +6,7 @@ class LoaderImg extends Component {
   render() {
     return (
       <div className="spinner">
-        <img src={spinner} />
+        <img src={spinner} alt="Loading" />
         <div>Loading . . .</div>
       </div>
     )
