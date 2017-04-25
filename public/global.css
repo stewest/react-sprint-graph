@@ -56,3 +56,15 @@ body {
 		text-align: center;
 	}
 }
+
+.spinner {
+	display: block;
+	margin: auto;
+	text-align: center;
+	width: 50%;
+	img {
+		clear: both;
+		text-align: center;
+		margin: auto;
+	}
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import LoaderImg from './Loader'
 import Plot from './Plot';
 import api from 'jira-agile-api-client';
 import queryString from 'query-string';
@@ -14,7 +15,7 @@ let intro = '';
 if (!args.boardId || !args.sprintId) {
   intro = 'Please provide boardId and sprintId parameters.';
 } else {
-  intro = 'Loading...';
+  intro = <LoaderImg />;
 }
 
 ReactDOM.render(
