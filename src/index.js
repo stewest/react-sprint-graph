@@ -79,13 +79,11 @@ api.sprint.getSingle(args.sprintId).then(s => {
   const graphDays = days.map((days, index) => {
     return index;
   });
-
+  // Curve expects 14 days, so needed to give it this array
+  const twoWeek = [14,13,12,11,10,9,8,7,6,5,4,3,2,1,0];
   // Draw base curve on graph
-  const basePoints = graphDays.map((totalPoints, graphDays) => {
-  // return Math.pow(y, 2) + spacing; // this is too tall
-  // =B3+(C4*5%)
+  const basePoints = graphDays.map((totalPoints, twoWeek) => {
     let percentage = 5;
-    // need to make this a more smooth curve.
     return Math.pow((totalPoints) + (totalPoints * ((percentage++)/100)), 1.65);
   }).reverse();
 
