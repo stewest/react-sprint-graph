@@ -38,7 +38,9 @@ api.sprint.getSingle(args.sprintId).then(s => {
   let days = [],
     totalPoints = [],
     demoDeployDonePoints = [],
+    testingPoints = [],
     donePoints = [];
+
 
   stats.forEach(({ date, stats }) => {
     // Make sure all status are initialized.
@@ -55,6 +57,9 @@ api.sprint.getSingle(args.sprintId).then(s => {
     days.push(date);
 
     donePoints.push(stats['Done'] + stats['Closed']);
+
+    testingPoints.push(stats['Testing']);
+
     demoDeployDonePoints.push(stats['Done'] + stats['Closed'] + stats['Demo']);
 
     totalPoints.push(stats['Done'] + stats['Demo'] + stats['Closed'] + stats['Testing'] + stats['In Progress'] + stats['To Do']);
@@ -97,6 +102,11 @@ api.sprint.getSingle(args.sprintId).then(s => {
       x: days,
       y: demoDeployDonePoints,
       name: 'Demo / Deploy / Done',
+    },
+    {
+      x: days,
+      y: testingPoints,
+      name: 'Points in Testing',
     },
     {
       x: days,
