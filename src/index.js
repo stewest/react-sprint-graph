@@ -24,13 +24,20 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
-  console.log(stats);
+let sprint;
+api.sprint.getSingle(args.sprintId).then(s => {
+  sprint = s;
+  console.log(sprint);
+  return api.util.getSprintHistory(args.boardId, args.sprintId);
+}).then(function (stats) {
+
+  // api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
+  // console.log(stats);
 
   let days = [],
-      totalPoints = [],
-      demoDeployDonePoints = [],
-      donePoints = [];
+    totalPoints = [],
+    demoDeployDonePoints = [],
+    donePoints = [];
 
   stats.forEach(({ date, stats }) => {
     // Make sure all status are initialized.
@@ -53,20 +60,31 @@ api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
   });
 
   // y = x2 + 2
-let daysTotal = days.length;
-let finalPoints = totalPoints[0];
-let spacing = (finalPoints / daysTotal);
+  let daysTotal = days.length;
+  let finalPoints = totalPoints[0];
+  let spacing = (finalPoints / daysTotal);
 
-console.log(daysTotal);
-console.log(finalPoints);
-console.log(spacing);
+  // console.log('number of days ' + daysTotal);
+  // console.log('last days points ' + finalPoints);
+  // console.log(' spacing ' + spacing);
+  // console.log(totalPoints);
 
-let graphDays = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+  // create an array of day numbers ascending.
+  const graphDays = days.map((days, index) => {
+    return index;
+  });
 
-const basePoints = graphDays.map((y) => {
-  return y * spacing;
-});
+  let dayPoints = totalPoints;
 
+  // Draw base curve on graph
+  const basePoints = graphDays.map((dayPoints, graphDays) => {
+  // return Math.pow(y, 2) + spacing; // this is too tall
+  // =B3+(C4*5%)
+    let percentage = 5;
+    // need to make this a more smooth curve.
+    return (dayPoints + (dayPoints * ((percentage++))));
+
+  }).reverse();
 
   const lines = [
     {
@@ -82,7 +100,7 @@ const basePoints = graphDays.map((y) => {
     {
       x: days,
       y: donePoints,
-      name: 'Done',
+      name: 'Points Done',
     },
     {
       x: days,
@@ -91,12 +109,12 @@ const basePoints = graphDays.map((y) => {
     },
   ];
 
-  console.log(lines);
+  // console.log(lines);
 
   ReactDOM.render(
     <div className="wrapper">
-      <h1 className="title">React - Jira Burn Up</h1>
-      <Plot Data={lines} Type="scatter"/>
+      <h1 className="title">Jira Burn Up for { sprint.name }</h1>
+      <Plot Data={lines} Type="scatter" Days={daysTotal}/>
     </div>,
     document.getElementById('root')
   );

@@ -20,7 +20,7 @@ body {
 
 /* Display some emojis after the title */
 .title:after {
-	content: "🌴😎🏄";
+	content: "😎";
 	display: inline-block;
 	margin-left: 0.5em;
 }
