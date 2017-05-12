@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoaderImg from './Loader'
-import Plot from './Plot';
+import LoaderImg from './components/Loader'
+import Plot from './components/Plot';
+import Velocity from './components/Velocity';
 import api from 'jira-agile-api-client';
 import queryString from 'query-string';
 
@@ -65,22 +66,12 @@ api.sprint.getSingle(args.sprintId).then(s => {
     totalPoints.push(stats['Done'] + stats['Demo'] + stats['Closed'] + stats['Testing'] + stats['In Progress'] + stats['To Do']);
   });
 
-  // y = x2 + 2
-  // const daysTotal = days.length;
-  // const finalPoints = totalPoints[0];
-  // const spacing = (finalPoints / daysTotal);
-
-  // console.log('number of days ' + daysTotal);
-  // console.log('last days points ' + finalPoints);
-  // console.log(' spacing ' + spacing);
-  // console.log(totalPoints);
-
   // create an array of day numbers ascending.
   const graphDays = days.map((days, index) => {
     return index;
   });
-  // Curve expects 14 days, so needed to give it this array
-  const twoWeek = [14,13,12,11,10,9,8,7,6,5,4,3,2,1,0];
+  // Curve expects 12 working days, so needed to give it this array
+  const twoWeek = [14,13,12,11,10,9,8,7,6,5,4,3,2,1];
   // Draw base curve on graph
   const basePoints = graphDays.map((totalPoints, twoWeek) => {
     let percentage = 5;
@@ -121,12 +112,10 @@ api.sprint.getSingle(args.sprintId).then(s => {
     <div className="wrapper">
       <h1 className="title">Jira Burn Up for { sprint.name }</h1>
       <Plot Data={lines} Type="scatter" Days={days.length}/>
+      <Velocity />
     </div>,
     document.getElementById('root')
   );
 }).catch(function (error) {
   console.log(error);
 });
-
-
-// Make a baswe curve that can automatically take the totalPoints points, and then make day points along the curve which equals the days array.
