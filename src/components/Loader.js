@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import spinner from './images/balls.svg';
+import spinner from '../images/balls.svg';
 
 class LoaderImg extends Component {
   

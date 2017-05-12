@@ -29,7 +29,7 @@ class Plot extends Component {
     const days = this.props.Days - 1;
     const concatData = dataArray.map(v => v);
     const layout = {
-      title: days + ' Day Sprint'
+      title: 'Day ' + days + ' of 14 Day Sprint'
     };
     Plotly.newPlot(this.div,concatData, layout);
   }
