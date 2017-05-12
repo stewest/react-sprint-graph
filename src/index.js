@@ -5,6 +5,7 @@ import Plot from './components/Plot';
 import Velocity from './components/Velocity';
 import api from 'jira-agile-api-client';
 import queryString from 'query-string';
+import styled from 'styled-components';
 
 // Set JIRA Url.
 api.setEndpoint('http://localhost:3001');
