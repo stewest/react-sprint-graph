@@ -10,7 +10,29 @@
  */
 import React, { Component } from 'react';
 import Plotly from 'plotly.js/dist/plotly.js';
+import styled from 'styled-components';
 
+const PlotWrapper = styled.div`
+  width: 100%;
+  .main-svg:first-of-type {
+    background-color: #FAFAFA!important;
+  }
+  .bg {
+    fill: #FAFAFA!important;
+  }
+  @media screen and (max-width: 425px) {
+  .plot-wrapper&:before {
+    content: "Rotate your phone to see the graph in its full glory. 🔄📈";
+    display: block;
+    font-size: 1em;
+    background-color: palevioletred;
+    color: white;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+`
 class Plot extends Component {
   componentDidMount() {
     this.drawPlot();
@@ -36,9 +58,9 @@ class Plot extends Component {
 
   render() {
     return (
-      <div className="plot-wrapper">
+      <PlotWrapper>
         <div ref={comp => this.div = comp} />
-      </div>
+      </PlotWrapper>
     )
   }
 }
