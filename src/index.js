@@ -27,12 +27,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-let sprint;
-api.sprint.getSingle(args.sprintId).then(s => {
-  sprint = s;
-  // console.log(sprint);
-  return api.util.getSprintHistory(args.boardId, args.sprintId);
-}).then(function (stats) {
+api.util.getSprintWithHistory(args.boardId, args.sprintId).then(function ({ history, sprint }) {
 
   // api.util.getSprintHistory(args.boardId, args.sprintId).then(function (stats) {
   // console.log(stats);
@@ -44,7 +39,7 @@ api.sprint.getSingle(args.sprintId).then(s => {
     donePoints = [];
 
 
-  stats.forEach(({ date, stats }) => {
+  history.forEach(({ date, stats }) => {
     // Make sure all status are initialized.
     stats = {
       'Done': 0,
