@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const VeloWrapper = styled.div`
-	display: block;
-	margin: auto;
-	text-align: center;
-	width: 100%;
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+  width: 100%;
 `
 
 class Velocity extends Component {

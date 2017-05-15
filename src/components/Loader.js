@@ -3,15 +3,15 @@ import spinner from '../images/balls.svg';
 import styled from 'styled-components';
 
 const Spinner = styled.div`
-	display: block;
-	margin: auto;
-	text-align: center;
-	width: 50%;
-	img {
-		clear: both;
-		text-align: center;
-		margin: auto;
-	}
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  img {
+    clear: both;
+    text-align: center;
+    margin: auto;
+  }
 `
 
 class LoaderImg extends Component {

@@ -1,26 +1,27 @@
 /* Styles setup */
 body {
-	background-color: #FAFAFA;
-	font-size: 16px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #FAFAFA;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* Generic styles */
 .wrapper {
-	width: 80%;
-	margin: 0 auto;
-	padding: 2em;
+  background-color: #e2e2e2;
+  margin: 0 auto;
+  padding: 2em;
+  width: calc(100% - 40px);
 }
 
 .title {
-	text-align: center;
-	margin-bottom: 2em;
-	font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 2em;
+  font-size: 1.5em;
 }
 
 /* Display some emojis after the title */
 .title:after {
-	content: "😎";
-	display: inline-block;
-	margin-left: 0.5em;
+  content: "😎";
+  display: inline-block;
+  margin-left: 0.5em;
 }

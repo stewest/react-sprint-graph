@@ -13,7 +13,8 @@ import Plotly from 'plotly.js/dist/plotly.js';
 import styled from 'styled-components';
 
 const PlotWrapper = styled.div`
-  width: 100%;
+  margin: auto;
+  width: 80%;
   .main-svg:first-of-type {
     background-color: #FAFAFA!important;
   }
