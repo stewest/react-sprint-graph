@@ -79,31 +79,37 @@ api.sprint.getSingle(args.sprintId).then(s => {
     return Math.pow((totalPoints) + (totalPoints * ((percentage++)/100)), 1.65);
   }).reverse();
 
+  let basePointsRound = parseFloat(basePoints[0]).toFixed(2);
+
   const lines = [
     {
       x: days,
       y: totalPoints,
-      name: 'Total',
+      name: 'Total Points: ' + totalPoints[0],
     },
     {
       x: days,
       y: demoDeployDonePoints,
-      name: 'Demo / Deploy / Done',
+      name: 'Demo / Deploy / Done: ' + demoDeployDonePoints[0],
     },
     {
       x: days,
       y: testingPoints,
-      name: 'Points in Testing',
+      name: 'Points in Testing: ' + testingPoints[0],
     },
     {
       x: days,
       y: donePoints,
-      name: 'Points Done',
+      name: 'DONE: ' + donePoints[0],
     },
     {
       x: days,
       y: basePoints,
-      name: 'Base Curve'
+      name: 'Base Curve: ' + basePointsRound,
+      line: {
+        dash: 'dashdot',
+        width: 1
+      }
     },
   ];
 
@@ -113,7 +119,7 @@ api.sprint.getSingle(args.sprintId).then(s => {
     <div className="wrapper">
       <h1 className="title">Jira Burn Up for { sprint.name }</h1>
       <Plot Data={lines} Type="scatter" Days={days.length}/>
-      <Velocity />
+      <Velocity vDays={days.length} dPoints={donePoints} />
     </div>,
     document.getElementById('root')
   );
