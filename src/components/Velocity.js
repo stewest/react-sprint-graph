@@ -8,8 +8,6 @@ const VeloWrapper = styled.div`
 	width: 100%;
 `
 
-
-
 class Velocity extends Component {
 
   render() {
