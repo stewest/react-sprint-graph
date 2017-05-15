@@ -6,6 +6,7 @@ import Velocity from './components/Velocity';
 import api from 'jira-agile-api-client';
 import queryString from 'query-string';
 import styled from 'styled-components';
+import GoalList from './components/GoalList';
 
 // Set JIRA Url.
 api.setEndpoint('http://localhost:3001');
@@ -107,14 +108,40 @@ api.util.getSprintWithHistory(args.boardId, args.sprintId).then(function ({ hist
       }
     },
   ];
-
   // console.log(lines);
+
+const goals = [{
+    text: 'Improve knowledge sharing',
+    checked: true,
+  }, {
+    text: 'Accurate estimations & planning',
+    checked: false,
+  }, {
+    text: 'Balance workload across team members',
+    checked: false,
+  }, {
+    text: 'Transparency of whats going on',
+    checked: false,
+  }, {
+    text: 'Focus - reduce the amount of projects a team member is working on',
+    checked: false,
+  }, {
+    text: 'Empower the team to take decisions',
+    checked: false,
+  }, {
+    text: 'Make it work both for maintenance & new development projects without a dedicated maintenance team',
+    checked: false,
+  }, {
+    text: 'Efficiency gains',
+    checked: false,
+}];
 
   ReactDOM.render(
     <div className="wrapper">
       <h1 className="title">Jira Burn Up for { sprint.name }</h1>
       <Plot Data={lines} Type="scatter" Days={days.length}/>
       <Velocity vDays={days.length} dPoints={donePoints} />
+      <GoalList items={goals} />
     </div>,
     document.getElementById('root')
   );
