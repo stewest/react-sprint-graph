@@ -1,4 +1,5 @@
 /**
+ * https://plot.ly/javascript/line-charts/
  * This component should render a plot with Plotly, taking these three props:
  *
  * - xData: the data to be rendered on the x-axis as an array

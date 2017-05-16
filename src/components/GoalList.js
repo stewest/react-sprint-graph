@@ -6,18 +6,37 @@ import styled from 'styled-components';
 
 const GoalListSection = styled.div`
   display: block;
+  height: auto;
   text-align: left;
   width: 100%;
   ul {
+    clear: both;
+    display: flex;
+    flex-wrap: wrap;
     list-style: none;
+    margin: 2rem 0;
     li {
+      flex: 0 1 50%;
+      float: left;
       margin-bottom: 4px;
+      //width: calc(50% - 32px);
+      label {
+        display: block;
+        padding-left: 0px;
+        width: 98%;
+      }
+      input {
+        margin-left: -20px;
+      }
     }
   }
 `
 
 const GoalInputWrapper = styled.div`
+  clear: both;
   display: block;
+  float: none;
+  margin: 2rem 0;
   width: 100%;
   input {
     border-radius: 4px;
