@@ -18,6 +18,7 @@ const GoalListSection = styled.div`
     li {
       flex: 0 1 50%;
       float: left;
+      line-height: 1.5rem;
       margin-bottom: 4px;
       //width: calc(50% - 32px);
       label {
