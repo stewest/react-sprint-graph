@@ -17,6 +17,7 @@ const PlotWrapper = styled.div`
   width: 80%;
   .main-svg:first-of-type {
     background-color: #FAFAFA!important;
+    border-radius: 8px;
   }
   .bg {
     fill: #FAFAFA!important;

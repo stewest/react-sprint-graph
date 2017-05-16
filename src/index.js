@@ -21,10 +21,30 @@ if (!args.boardId || !args.sprintId) {
   intro = <LoaderImg />;
 }
 
+const MainWrapper = styled.div`
+  background-color: #e2e2e2;
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 2em;
+  width: calc(80%);
+
+  .title {
+    text-align: center;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+  }
+
+  .title:after {
+    content: "😎";
+    display: inline-block;
+    margin-left: 0.5em;
+  }
+`
+
 ReactDOM.render(
-  <div className="wrapper">
+  <MainWrapper>
     {intro}
-  </div>,
+  </MainWrapper>,
   document.getElementById('root')
 );
 
@@ -63,16 +83,15 @@ api.util.getSprintWithHistory(args.boardId, args.sprintId).then(function ({ hist
     totalPoints.push(stats['Done'] + stats['Demo'] + stats['Closed'] + stats['Testing'] + stats['In Progress'] + stats['To Do']);
   });
 
-  // create an array of day numbers ascending.
+  // create an array of day numbers ascending for the base curve.
   const graphDays = days.map((days, index) => {
     return index;
   });
-  // Curve expects 12 working days, so needed to give it this array
-  const twoWeek = [14,13,12,11,10,9,8,7,6,5,4,3,2,1];
+
   // Draw base curve on graph
-  const basePoints = graphDays.map((totalPoints, twoWeek) => {
+  const basePoints = graphDays.map((totalPoints) => {
     let percentage = 5;
-    return Math.pow((totalPoints) + (totalPoints * ((percentage++)/100)), 1.65);
+    return Math.pow((totalPoints) + (totalPoints * ((percentage++)/100)), 1.6);
   }).reverse();
 
   let basePointsRound = parseFloat(basePoints[0]).toFixed(2);
@@ -92,6 +111,7 @@ api.util.getSprintWithHistory(args.boardId, args.sprintId).then(function ({ hist
       x: days,
       y: testingPoints,
       name: 'Points in Testing: ' + testingPoints[0],
+      line: {shape: 'spline'},
     },
     {
       x: days,
@@ -104,6 +124,7 @@ api.util.getSprintWithHistory(args.boardId, args.sprintId).then(function ({ hist
       name: 'Base Curve: ' + basePointsRound,
       line: {
         dash: 'dashdot',
+        shape: 'spline',
         width: 1
       }
     },
@@ -137,12 +158,12 @@ const goals = [{
 }];
 
   ReactDOM.render(
-    <div className="wrapper">
+    <MainWrapper>
       <h1 className="title">Jira Burn Up for { sprint.name }</h1>
       <Plot Data={lines} Type="scatter" Days={days.length}/>
       <Velocity vDays={days.length} dPoints={donePoints} />
       <GoalList items={goals} />
-    </div>,
+    </MainWrapper>,
     document.getElementById('root')
   );
 }).catch(function (error) {
