@@ -6,7 +6,11 @@ Required GET params: boardId, sprintId (eg. http://localhost:3000/?boardId=240&s
 
 ## Local
 
-For local development run `npm run dev-server` or `yarn dev-server` in a separate terminal and provide JIRA url, your username and password.
+- yarn isntall
+
+- For local development run `npm run dev-server` or `yarn dev-server` in a separate terminal and provide JIRA url, your username and password.
+
+- Then in a new terminal, run `yarn start dev` with the above url ^^
 
 ## License
 
