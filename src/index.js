@@ -131,6 +131,8 @@ api.util.getSprintWithHistory(args.boardId, args.sprintId).then(function ({ hist
   ];
   // console.log(lines);
 
+  
+// TODO: Store and retreive these externally  
 const goals = [{
     text: 'Improve knowledge sharing',
     checked: true,
